@@ -1,0 +1,21 @@
+{
+  "name": "arraiashow",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/oliveirahipx/ArraiaShow#readme",
+  "bugs": {
+    "url": "https://github.com/oliveirahipx/ArraiaShow/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oliveirahipx/ArraiaShow.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "rodar": "node --watch src/server.js",
+    "commit": "git add . && git commit -m 'Update' && git push"
+  }
+}
