@@ -11,7 +11,7 @@ app.use(express.json());
 const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: 'SUA_SENHA',
+    password: 'Mig202418',
     database: 'arraia_show'
 });
 
@@ -22,7 +22,7 @@ app.get('/barraca/:id/produtos', (req, res) => {
     
     db.query(query, [id], (err, results) => {
         if (err) return res.status(500).json(err);
-        res.json(results);
+        res.json(results); 
     });
 });
 
@@ -40,5 +40,6 @@ app.get('/barraca/:id/arrecadacao', (req, res) => {
         res.json(results[0]);
     });
 });
+
 
 app.listen(3001, () => console.log("Servidor rodando na porta 3001"));
