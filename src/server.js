@@ -1,26 +1,44 @@
-import http from 'node:http';
+const express = require('express');
+const cors = require('cors');
+const mysql = require('mysql2');
+require('dotenv').config();
 
-/*
-/não aceita arrays para exibição então ira tranformar em json para exibir os
-dados do array de forma correta usando o JSON.stringify() para transformar o 
-array em string e exibir os dados corretamente
-*/
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-const users = [
-  { id: 1, name: 'John Doe' },
-  { id: 2, name: 'Jane Doe' },
-];
-
-const server = http.createServer((req, res) => {
-  const { method, url } = req;
-  if(method === 'GET' && url === '/users') {
-    return res.end(JSON.stringify(users));
-  }
-  if(method === 'POST' && url === '/users') {
-    return res.end('Criacao de usuario');
-
-  }
-    return res.end('Hello World');
+// Conexão com o Banco que você criou
+const db = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: 'SUA_SENHA',
+    database: 'arraia_show'
 });
 
-server.listen(3000);
+// Rota para o Barraqueiro ver seus produtos
+app.get('/barraca/:id/produtos', (req, res) => {
+    const { id } = req.params;
+    const query = 'SELECT * FROM produtos WHERE barraca_id = ?';
+    
+    db.query(query, [id], (err, results) => {
+        if (err) return res.status(500).json(err);
+        res.json(results);
+    });
+});
+
+// Rota para Painel Geral de Arrecadação (Dashboard)
+app.get('/barraca/:id/arrecadacao', (req, res) => {
+    const { id } = req.params;
+    const query = `
+        SELECT SUM(subtotal) as total_arrecadado 
+        FROM itens_pedido ip
+        JOIN produtos p ON ip.produto_id = p.id
+        WHERE p.barraca_id = ?`;
+
+    db.query(query, [id], (err, results) => {
+        if (err) return res.status(500).json(err);
+        res.json(results[0]);
+    });
+});
+
+app.listen(3001, () => console.log("Servidor rodando na porta 3001"));
