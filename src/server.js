@@ -17,7 +17,7 @@ app.use(express.json());
 const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: 'Mig202418',
+    password: '20241802',
     database: 'arraia_show',
     waitForConnections: true,
     connectionLimit: 10,
@@ -28,7 +28,7 @@ const db = mysql.createPool({
 
 // Rota de teste para verificar se a API está online
 app.get('/', (req, res) => {
-    res.send('🚀 API Arraiá Show online e operando com ES Modules!');
+    res.send('API Arraiá Show online e operando com ES Modules!');
 });
 
 // Rota para o Barraqueiro ver seus produtos
