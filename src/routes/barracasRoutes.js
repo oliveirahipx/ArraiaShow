@@ -1,5 +1,5 @@
 import express from 'express';
-import { criarBarraca, listarBarracasPorEvento } from '../controllers/barracasController.js';
+import { criarBarraca, listarBarracasPorEvento, listartodasBarracas } from '../controllers/barracasController.js';
 
 const router = express.Router();
 
@@ -9,4 +9,7 @@ router.post('/', criarBarraca);
 // Rota para buscar barracas de um evento (GET)
 router.get('/evento/:eventoId', listarBarracasPorEvento);
 
-export default router;
+// Rota para buscar todas as barracas (GET)
+router.get('/', listartodasBarracas);
+
+

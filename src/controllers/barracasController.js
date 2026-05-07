@@ -25,3 +25,13 @@ export const listarBarracasPorEvento = (req, res) => {
         res.json(results);
     });
 };
+//Listar todas as barracas independente de evento
+export const listartodasBarracas = (req, res) => {
+    const query = 'SELECT * FROM barracas';
+
+    db.query(query, (err, results) => {
+        if (err) return res.status(500).json(err);
+        res.json(results);
+    });
+    
+};
