@@ -3,6 +3,7 @@ import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 import barracasRoutes from './routes/barracasRoutes.js';
 import eventosRoutes from './routes/eventosRoutes.js';
+import produtosRoutes from './routes/produtosRoutes.js';
 
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/barracas', barracasRoutes);
 app.use('/eventos', eventosRoutes);
+app.use('/produtos', produtosRoutes);
 
 app.listen(3001, () => {
     console.log("Servidor do Arraiá rodando");
