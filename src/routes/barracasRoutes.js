@@ -12,4 +12,5 @@ router.get('/evento/:eventoId', listarBarracasPorEvento);
 // Rota para buscar todas as barracas (GET)
 router.get('/', listartodasBarracas);
 
+export default router;
 

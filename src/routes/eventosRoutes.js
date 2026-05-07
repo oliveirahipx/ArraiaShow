@@ -12,3 +12,5 @@ router.get('/', listarEventos);
 
 // Rota para buscar um evento por ID (GET)
 router.get('/:id', listarEventoPorId);
+
+export default router;
