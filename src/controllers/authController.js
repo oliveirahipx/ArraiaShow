@@ -35,7 +35,7 @@ export const login = (req, res) => {
 
         if (!senhaValida) return res.status(401).json({ message: "Senha incorreta" });
 
-        const token = jwt.sign({ id: usuario.id, tipo: usuario.tipo }, SECRET_KEY, { expiresIn: '8h' });
+        const token = jwt.sign({ id: usuario.id, tipo: usuario.tipo }, SECRET_KEY, { expiresIn: '2h' });
         res.json({ token, user: { nome: usuario.nome, tipo: usuario.tipo } });
     });
 };

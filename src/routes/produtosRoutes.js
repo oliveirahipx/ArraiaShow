@@ -6,11 +6,12 @@ const router = express.Router();
 // Rota para cadastrar (POST)
 router.post('/', criarProduto);
 
+// Rota para buscar todos os produtos (GET)
+router.get('/', listarTodosProdutos);
+
 // Rota para buscar produtos de uma barraca (GET)
 router.get('/barraca/:barracaId', listarProdutosPorBarraca);
 
-// Rota para buscar todos os produtos (GET)
-router.get('/', listarTodosProdutos);
 
 // Rota  para deletar um produto (DELETE)
 router.delete('/deletar/:id', deletarProduto);
