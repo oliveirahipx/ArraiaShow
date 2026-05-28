@@ -36,6 +36,7 @@ export const login = (req, res) => {
         if (!senhaValida) return res.status(401).json({ message: "Senha incorreta" });
 
         const token = jwt.sign({ id: usuario.id, tipo: usuario.tipo }, SECRET_KEY, { expiresIn: '2h' });
+
         res.json({ token, user: { nome: usuario.nome, tipo: usuario.tipo } });
     });
 };
@@ -49,6 +50,9 @@ export const verificarToken = (req, res, next) => {
     jwt.verify(token, SECRET_KEY, (err, user) => {
         if (err) return res.status(403).json({ message: "Token inválido" });
         req.user = user;
+        // Salva os dados do usuário na requisição para usar depois
+        req.usuarioId = decoded.id;
+        req.usuarioTipo = decoded.tipo;
         next();
     });
 };
